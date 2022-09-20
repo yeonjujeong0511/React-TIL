@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './App.css';
+import IterationSample from '../Components/IterationSample';
 
 function App() {
   const [number, setNumber] = useState(1);
@@ -17,6 +18,7 @@ function App() {
       <button onClick={increaseNumber}>+1</button>
       <button onClick={decreseNumber}>-1</button>
       <div>여기에추가될것</div>
+      <IterationSample></IterationSample>
     </>
   );
 }
