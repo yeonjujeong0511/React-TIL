@@ -4,6 +4,9 @@ import Say from '../Components/Say';
 import Like from '../Components/Like';
 import EventPractice from '../Components/EventPractice';
 import List from '../Components/List';
+import ValidationSamPle from '../Components/ValidationSample';
+import InterationSample from '../Components/InterationSample';
+import ScrollBox from '../Components/ScrollBox';
 
 function App() {
   return (
@@ -13,6 +16,10 @@ function App() {
       <Like></Like>
       <EventPractice></EventPractice>
       <List></List>
+      <ValidationSamPle></ValidationSamPle>
+      <ScrollBox></ScrollBox>
+
+      <InterationSample></InterationSample>
     </>
   );
 }
