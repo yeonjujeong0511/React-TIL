@@ -1,42 +1,39 @@
 import { useState, useRef } from "react";
-// 함수형 컴포넌트에서 useState와 useRef 사용할때
 import "./ValidationSamPle.css";
 
 function ValidationSamPle() {
   const inputRef = useRef();
-  // ustState 처럼 ref사용할때도 이렇게 해줘야한다.
   const [password, setPassword] = useState("");
-  // password는 ''빈칸, 아무것도 할당되있지 않음
-  // setPassword로 password값 할당
   const [clicked, setClicked] = useState("false");
-  // clicked는 false로 할당
   const [validated, setValidated] = useState("false");
-  // validated는 false로 할당
 
   const handleChange = (e) => {
     setPassword(e.target.value);
   };
-  // 함수가 발생되면 password에 e.target.value값이 할당
+  // 함수가 발생하면, password를 함수가 발생한 곳에 value값으로 할당한다.
 
   const handleButtonClick = () => {
     setClicked("true");
     setValidated(password === "0000");
     inputRef.current.focus();
   };
-  // 함수가 실행되면, clicked에 true 할당
-  // validated 값은 password 가 0000과 일치하는지를 할당
-  // input에 커서가 가게한다. (focus로 인해 커서가 input으로 넘어간다.)
+  // 함수가 발생하면, clicked는 true를 할당
+  // validated는  password가 0000인것을 확인한다.
+  // input에 커서를 옮긴다.
+
   return (
     <>
       <h1>ref연습</h1>
       <input
-        ref={inputRef}
-        type="password"
-        value={password}
-        onChange={handleChange}
+        ref={inputRef} // 빈칸
+        type="password" // 문자가 동그라미로 가려진다.
+        value={password} // 함수가 발생하기 전까지는 빈칸
+        onChange={handleChange} // input에 변화가 생기면 handleChane함수가 발생해서, input에 발생한 값이 password가 된다.
         className={clicked ? (validated ? "success" : "failure") : ""}
       ></input>
+      {/* ? */}
       <button onClick={handleButtonClick}>검증하기</button>
+      {/* 버튼이 클릭하면 handleButtonClick 함수가 발생*/}
     </>
   );
 }
