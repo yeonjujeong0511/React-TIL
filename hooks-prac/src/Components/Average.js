@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useCallback, useRef } from "react";
 
 const getAverage = (numbers) => {
   // 함수선언, 매개변수 numbers
@@ -17,24 +17,25 @@ function Average() {
   // 컴포넌트 Average
   const [list, setList] = useState([]);
   const [number, setNumber] = useState("");
+  const inPutEl = useRef(null);
   // list와 number의 초깃값 설정
-  const onChange = (e) => setNumber(e.target.value);
-  // onChanme 함수가 실행되면 number에 함수실행한 곳에 값을 할당
-  const onInsert = (e) => {
+  const onChange = useCallback((e) => {
+    setNumber(e.target.value);
+  }, []); // 컴포넌트가 처음 렌더링 될때만 함수 생성
+  const onInsert = useCallback(() => {
     const nextList = list.concat(parseInt(number));
-    // 함수가 실행되면, list의 요소들에 number값을 정수로 변환해서 새 배열인 nextList를 만든다.
     setList(nextList);
-    // list는 nextList로 재할당
     setNumber("");
-    // number값은 다시 빈칸이 된다.
-  };
+    inPutEl.current.focus();
+  }, [number, list]);
+  // number 혹은 list가 바뀌었을 때만 함수 생성
 
   const avg = useMemo(() => getAverage(list), [list]);
   // useMemo 메서드
   return (
     <>
       <h1>useMemo 학습</h1>
-      <input value={number} onChange={onChange}></input>
+      <input value={number} onChange={onChange} ref={inPutEl}></input>
       <button onClick={onInsert}>등록</button>
       <ul>
         {list.map((value, index) => (

@@ -1,29 +1,19 @@
-import { useReducer } from "react";
-
-function reducer(state, action) {
-  return {
-    ...state,
-    [action.name]: action.value,
-  };
-}
+import useInputs from "./useinputs";
 
 function Info() {
-  const [state, dispatch] = useReducer(reducer, {
+  const [state, onChange] = useInputs({
     inputName: "",
     inputNickName: "",
   });
-
   const { inputName, inputNickName } = state;
-  const onChange = (e) => {
-    dispatch(e.target);
-  };
+
   return (
     <>
       <h1>useState 여러번 사용하기</h1>
       <input
         name="inputName"
         value={inputName}
-        type="text"
+        type="text"W
         placeholder="이름을 입력해주세요"
         onChange={onChange}
       ></input>
