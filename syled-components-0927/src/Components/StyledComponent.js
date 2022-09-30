@@ -6,7 +6,7 @@ const Box = styled.div`
   padding: 1rem;
   display: flex;
 
-  wiedth: 1024px;
+  width: 1024px;
   margin: 0 auto;
   @media (max-width: 1024px) {
     width: 768px;
