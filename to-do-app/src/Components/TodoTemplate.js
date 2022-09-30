@@ -26,10 +26,18 @@ const Content = styled.div`
 const TodoTemplate = ({ children }) => {
   return (
     <Template>
-      <AppTitle>일정관리</AppTitle>
+      <AppTitle>일정관리</AppTitle> 
+      {/* 일정관리 부분 */}
       <Content>{children}</Content>
+      {/* 할 일을 받고, 보여주는 곳 */}
     </Template>
+    
   );
+  
 };
 
+
 export default TodoTemplate;
+
+
+// 일정관리 메인 부분

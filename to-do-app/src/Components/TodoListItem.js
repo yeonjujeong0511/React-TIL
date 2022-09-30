@@ -3,6 +3,7 @@ import {
   MdCheckBox,
   MdRemoveCircleOutline,
 } from 'react-icons/md';
+// 아이콘 컴포넌트 불러오기
 import styled from 'styled-components';
 import cn from 'classnames';
 
@@ -59,7 +60,9 @@ const TodoListItem = ({ todo }) => {
   return (
     <ListItem>
       <CheckBox className={cn('checkbox', { checked })}>
+        {/* cn은.. */}
         {checked ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
+        {/* checked가 true면 해당 아이콘을, false면 해당아이콘 보여줌 */}
         <Text className="text">{text}</Text>
       </CheckBox>
       <Remove>
@@ -70,3 +73,6 @@ const TodoListItem = ({ todo }) => {
 };
 
 export default TodoListItem;
+
+
+// to-do-list 한 줄 한 줄의 설정값

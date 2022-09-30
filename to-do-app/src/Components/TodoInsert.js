@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { MdAdd } from 'react-icons/md';
+import { useCallback, useState } from 'react';
 
 const Insert = styled.form`
   display: flex;
@@ -40,9 +41,21 @@ const Insert = styled.form`
 `;
 
 const TodoInsert = () => {
+  const [value, setValue] = useState('');
+
+  const onChange = useCallback((e) => {
+    setValue(e.target.value);
+  }, []);
+
+  // useCallback -> 한 번 함수를 만들고 재사용할 수 있게 해줌
+
   return (
     <Insert>
-      <input placeholder="할 일을 입력하세요"></input>
+      <input
+        placeholder="할 일을 입력하세요"
+        value={value}
+        onChange={onChange}
+      ></input>
       <button type="submit">
         <MdAdd />
       </button>
@@ -51,3 +64,6 @@ const TodoInsert = () => {
 };
 
 export default TodoInsert;
+
+// 할일을 입력하세요
+// 일정 추가 부분
