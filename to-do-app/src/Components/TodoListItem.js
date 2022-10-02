@@ -55,17 +55,20 @@ const Remove = styled.div`
   }
 `;
 
-const TodoListItem = ({ todo }) => {
-  const { text, checked } = todo;
+const TodoListItem = ({ todo, onRemove, onToggle }) => {
+  const { id, text, checked } = todo;
   return (
     <ListItem>
-      <CheckBox className={cn('checkbox', { checked })}>
+      <CheckBox
+        className={cn('checkbox', { checked })}
+        onClick={() => onToggle(id)}
+      >
         {/* cn은.. */}
         {checked ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
         {/* checked가 true면 해당 아이콘을, false면 해당아이콘 보여줌 */}
         <Text className="text">{text}</Text>
       </CheckBox>
-      <Remove>
+      <Remove onClick={() => onRemove(id)}>
         <MdRemoveCircleOutline />
       </Remove>
     </ListItem>
@@ -73,6 +76,5 @@ const TodoListItem = ({ todo }) => {
 };
 
 export default TodoListItem;
-
 
 // to-do-list 한 줄 한 줄의 설정값
