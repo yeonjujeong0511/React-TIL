@@ -1,16 +1,15 @@
 import styled from 'styled-components';
 import TodoListItem from './TodoListItem';
 
-const List = styled.div`
+const TodoListBox = styled.div`
   min-height: 320px;
   max-height: 513px;
   overflow-y: auto;
 `;
-// 부모 컴포넌트에서 받은 todo를 사용
+// 부모 컴포넌트에서 받은 todos를 사용
 const TodoList = ({ todos, onRemove, onToggle }) => {
-  // console.log(todos);
   return (
-    <List>
+    <TodoListBox>
       {todos.map((todo) => (
         <TodoListItem
           todo={todo}
@@ -18,14 +17,11 @@ const TodoList = ({ todos, onRemove, onToggle }) => {
           onRemove={onRemove}
           onToggle={onToggle}
         />
-        // TodoListItem 컴포넌트에서 값을 받아서 사용하겠다
-        // key값은 todo의 id값으로 할당
+        // props로 받아온 todos를 map함수를 이용해서 TodoListItem 으로 보내준다.
+        // 객체를 통째로 props로 전달
       ))}
-    </List>
+    </TodoListBox>
   );
 };
 
 export default TodoList;
-
-// 할일들을 배열에 담는 곳
-// todolist item을 여기에 불러온다.
