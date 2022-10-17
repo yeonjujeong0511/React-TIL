@@ -57,9 +57,14 @@ const TodoListItem = ({ todo, onRemove, onToggle }) => {
   // onRemove함수에서 id값이 필요하니까 또 가져와서 사용한다.
   return (
     <TodoListItemBox>
-      <div className={cn('checkbox', { checked })} onClick={() => onToggle(id)}>
-        {checked ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
+      <div
+        className={cn('checkbox', { checked })}
+        onClick={() => {
+          onToggle(id);
+        }}
+      >
         {/* checked가 참이면 참 값을 , 거짓이면 거짓값을 보여준다. */}
+        {checked ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
         <div>{text}</div>
       </div>
       <div

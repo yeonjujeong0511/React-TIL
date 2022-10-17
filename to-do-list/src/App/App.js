@@ -63,7 +63,7 @@ function App() {
     (id) => {
       setTodos(
         todos.map((todo) =>
-          todo.id === id ? { ...todo, check: !todo.checked } : todo,
+          todo.id === id ? { ...todo, checked: !todo.checked } : todo,
         ),
       );
     },
@@ -74,7 +74,11 @@ function App() {
       <TodoTemplate>
         <TodoInsert onInsert={onInsert}></TodoInsert>
         {/* onInsert함수를 TodoInsert에서 사용하기위해 porps로 전달 */}
-        <TodoList todos={todos} onRemove={onRemove} onToggle={onToggle}></TodoList>
+        <TodoList
+          todos={todos}
+          onRemove={onRemove}
+          onToggle={onToggle}
+        ></TodoList>
         {/* todos를 TodoList에서 쓰기위해 porps로 전달 */}
         {/* onInsert함수를 TodoList에서 사용하기 위해 porps로 전달 */}
         {/* onInsert함수와 똑같이 onToggle함수를 TodoList에서 사용하기 위해 porps로 전달 */}
