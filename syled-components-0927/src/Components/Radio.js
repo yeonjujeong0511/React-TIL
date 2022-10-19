@@ -6,6 +6,7 @@ const Radio = () => {
 
   const onclick = (e) => {
     if (e.target.checked === !ischecked) {
+      
       console.log('체크됨');
       setChecked(ischecked);
       setState('block');
