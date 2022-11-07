@@ -6,8 +6,9 @@ const List = styled.div`
   max-height: 513px;
   overflow-y: auto;
 `;
-
-const TodoList = () => {
+// 부모 컴포넌트에서 받은 todo를 사용
+const TodoList = ({ todos, onRemove, onToggle }) => {
+  // console.log(todos);
   return (
     <List>
       <TodoListItem />
