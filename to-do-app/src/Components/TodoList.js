@@ -7,20 +7,12 @@ const List = styled.div`
   overflow-y: auto;
 `;
 
-const TodoList = ({ todos, onRemove, onToggle }) => {
-  // console.log(todos);
+const TodoList = () => {
   return (
     <List>
-      {todos.map((todo) => (
-        <TodoListItem
-          todo={todo}
-          key={todo.id}
-          onRemove={onRemove}
-          onToggle={onToggle}
-        />
-        // TodoListItem 컴포넌트에서 값을 받아서 사용하겠다
-        // key값은 todo의 id값으로 할당
-      ))}
+      <TodoListItem />
+      <TodoListItem />
+      <TodoListItem />
     </List>
   );
 };

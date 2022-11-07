@@ -8,6 +8,8 @@ const Box = styled.div`
 
   width: 1024px;
   margin: 0 auto;
+  // 반응형 디자인도 가능하다
+  // 미디어 쿼리를 이용
   @media (max-width: 1024px) {
     width: 768px;
   }

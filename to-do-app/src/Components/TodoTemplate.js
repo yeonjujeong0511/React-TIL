@@ -38,6 +38,4 @@ const TodoTemplate = ({ children }) => {
 
 
 export default TodoTemplate;
-
-
 // 일정관리 메인 부분
