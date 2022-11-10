@@ -40,19 +40,16 @@ const NewsList = () =>{
 
 if(loading) {
   return<NewListBlock>대기중...</NewListBlock>
-  console.log('데이터 대기중')
 }
 
 if(!articles){
   return null
-  console.log('불러오기 실패')
 }
-console.log(articles[0].url)
   return(
     <NewListBlock>
-      {articles.map(article => {
+      {articles.map(article => (
         <NewsItem key={article.url} article={article} />
-      })}
+      ))}
     </NewListBlock>
   )
 }

@@ -31,7 +31,7 @@ const NewsItemBlock = styled.div`
 }
 `;
 
-const NewItem = ({article}) => {
+const NewsItem = ({article}) => {
   const {title, description
     , url, urlToImage} = article;
   return (
@@ -55,4 +55,4 @@ const NewItem = ({article}) => {
   )
 }
 
-export default NewItem;
+export default NewsItem;
