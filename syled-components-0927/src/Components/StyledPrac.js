@@ -1,9 +1,9 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const Title = styled.h1`
   width: 500px;
   height: 50px;
-  background: ${(props) => props.bgc || 'orange'};
+  background: ${(props) => props.bgc || "orange"};
   color: white;
   text-align: center;
 `;
@@ -34,7 +34,7 @@ const Box = styled.div`
 const StyledPrac = () => {
   return (
     <>
-      <Title>styled-Component</Title>
+      <Title bgc="black">styled-Component</Title>
       <Box>
         <button>여기를 눌러주세요</button>
       </Box>
