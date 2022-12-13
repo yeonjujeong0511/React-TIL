@@ -21,10 +21,12 @@ const Map = () => {
     });
 
     const infowindow = new window.kakao.maps.InfoWindow({ zindex: 1 });
-    let map = new window.kakao.maps.Map(container, options);
+    const map = new window.kakao.maps.Map(container, options);
     marker.setMap(map);
     // 기본 지도
     //console.log(map);
+
+    map.addOverlayMapTypeId(window.kakao.maps.MapTypeId.TRAFFIC);
 
     window.kakao.maps.event.addListener(
       map,
@@ -78,7 +80,18 @@ const Map = () => {
     height: "800px",
   };
 
-  return <div id="map" style={divStyling}></div>;
+  // const buttonStyle = {
+  //   width: "40px",
+  //   height: "20px",
+  //   background-color : "blue"
+  // };
+
+  return (
+    <>
+      <div id="map" style={divStyling}></div>
+      <div></div>
+    </>
+  );
 };
 
 export default Map;
