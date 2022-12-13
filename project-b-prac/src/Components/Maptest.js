@@ -16,29 +16,29 @@ const Maptest = () => {
     setAddress(newAddress);
   };
 
-  const serchAdress = (address) => {
-    naver.maps.Service.geocode(
-      {
-        query: address,
-      },
-      function (status, response) {
-        if (status !== naver.maps.Service.Status.OK)
-          return alert("something wrong!");
-        // 제대로 된 query가 들어가먄 response가 return 되는 경우
-        let result = response.v2; // 검색 결과의 컨테이너
-        items = result.addresses; // 검색결과의 배열
+  // const serchAdress = (address) => {
+  //   naver.maps.Service.geocode(
+  //     {
+  //       query: address,
+  //     },
+  //     function (status, response) {
+  //       if (status !== naver.maps.Service.Status.OK)
+  //         return alert("something wrong!");
+  //       // 제대로 된 query가 들어가먄 response가 return 되는 경우
+  //       let result = response.v2; // 검색 결과의 컨테이너
+  //       items = result.addresses; // 검색결과의 배열
 
-        let x = parseFloat(items[0].x); // 경도
-        let y = parseFloat(items[0].y); // 위도
+  //       let x = parseFloat(items[0].x); // 경도
+  //       let y = parseFloat(items[0].y); // 위도
 
-        setLat(y); // 위도 상태 변경
-        setLng(x); // 경도 상태 변경
-        setZoom(15);
-        setRoadAddress(items[0].roadAddress);
-        // 도로명 주소
-      }
-    );
-  };
+  //       setLat(y); // 위도 상태 변경
+  //       setLng(x); // 경도 상태 변경
+  //       setZoom(15);
+  //       setRoadAddress(items[0].roadAddress);
+  //       // 도로명 주소
+  //     }
+  //   );
+  // };
 
   return (
     <>

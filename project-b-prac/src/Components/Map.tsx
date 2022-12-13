@@ -23,3 +23,5 @@ const Map = () => {
 };
 
 export default Map;
+
+// map api 사용
