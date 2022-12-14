@@ -13,7 +13,7 @@ const Map = () => {
   const [cctvData, setcctvData] = useState();
   const mapRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    const API_KEY = "185891a7bc29448b861eb0ff3a718c0d";
+    const API_KEY = process.env.REACT_APP_API_KEY;
     const url = `https://openapi.its.go.kr:9443/cctvInfo?apiKey=${API_KEY}&type=ex&cctvType=1&minX=127.303832&maxX=127.444058&minY=36.310383&maxY=36.393645&getType=json`;
 
     class CCTV {
