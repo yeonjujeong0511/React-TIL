@@ -1,20 +1,31 @@
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import cctvImg from "../image/cctv.svg";
-
+import caurionImg from "../image/caution.svg";
+import styled from "styled-components";
 declare global {
   interface Window {
     kakao: any;
   }
 }
+const Overlay = styled.div`
+  width: 300px;
+  height: 132px;
+  margin-left: -144px;
+  text-align: left;
+  overflow: hidden;
+  font-size: 12px;
+`;
 
-const Map = ({ searchPlace, searchPlace2 }: any) => {
+const Map = ({ searchPlace }: any) => {
   const { kakao } = window;
   const [cctvData, setcctvData] = useState();
+  const [accidentData, setAccidentData] = useState(null);
   const [changeMaptype, setChangeMaptype] = useState("");
   const mapRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
-    // ! cctv 불러오는것
+    // // ! cctv 불러오는것
     // const API_KEY = process.env.REACT_APP_API_KEY;
     // const url = `https://openapi.its.go.kr:9443/cctvInfo?apiKey=${API_KEY}&type=ex&cctvType=1&minX=127.303832&maxX=127.444058&minY=36.310383&maxY=36.393645&getType=json`;
 
@@ -26,6 +37,58 @@ const Map = ({ searchPlace, searchPlace2 }: any) => {
     //     this.coordy = coordy;
     //   }
     // }
+
+    const container = mapRef.current;
+    let options = {
+      center: new kakao.maps.LatLng(36.349286539618234, 127.37768781658409),
+      level: 7, //지도의 레벨(확대, 축소 정도)
+    };
+    // 지도 생성
+    // 기본 지도
+
+    const map = new kakao.maps.Map(container, options);
+
+    const content = `
+    <div>
+      <p>사고발생</p>
+    </div>
+    `;
+
+    const accident_url = "http://127.0.0.1:5000/accident";
+    axios.get(accident_url).then((res) => {
+      const data = res.data;
+      console.log(data);
+      const imageSize = new kakao.maps.Size(24, 35);
+      const markerImage = new kakao.maps.MarkerImage(caurionImg, imageSize);
+      for (var i = 0; i < data.length; i++) {
+        const accidentMarker = new kakao.maps.Marker({
+          map: map, // 마커를 표시할 지도
+          position: new kakao.maps.LatLng(
+            data[i].locationDataY,
+            data[i].locationDataX
+          ), // 마커를 표시할 위치
+          image: markerImage, // 마커 이미지
+        });
+
+        const accidentOverlay = new kakao.maps.CustomOverlay({
+          content: content,
+          map: map,
+          position: accidentMarker.getPosition(),
+        });
+
+        kakao.maps.event.addListener(accidentMarker, "mouseover", function () {
+          accidentOverlay.setMap(map);
+        });
+
+        // kakao.maps.event.addListener(accidentMarker, "click", function () {
+        //   accidentOverlay.setMap(map);
+        // });
+        // function closeOverlay() {
+        //     accidentOverlay.setMap(null);
+        //   }
+      }
+    });
+
     // const cctvArr: any = [];
     // axios.get(url).then((res) => {
     //   const data = res.data.response.data;
@@ -39,15 +102,6 @@ const Map = ({ searchPlace, searchPlace2 }: any) => {
     //   //console.log(cctvArr);
     //   setcctvData(cctvArr);
     // });
-
-    const container = mapRef.current;
-    let options = {
-      center: new kakao.maps.LatLng(36.349286539618234, 127.37768781658409),
-      level: 7, //지도의 레벨(확대, 축소 정도)
-    };
-    // 지도 생성
-    // 기본 지도
-    const map = new kakao.maps.Map(container, options);
 
     const dummy = [
       {
@@ -84,6 +138,8 @@ const Map = ({ searchPlace, searchPlace2 }: any) => {
     //     image: makerImg,
     //   });
     // }
+
+    // 돌발상황 마커 생성
 
     // 마커 생성
     const marker = new kakao.maps.Marker({
@@ -212,9 +268,6 @@ const Map = ({ searchPlace, searchPlace2 }: any) => {
         searchindow.close();
       });
     }
-
-    // const changeMaptype = kakao.maps.MapTypeId.TRAFFIC;
-    // map.addOverlayMapTypeId(changeMaptype);
   }, [searchPlace]);
 
   //주소 - 좌표 변환 객체를 생성
