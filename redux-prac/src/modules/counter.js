@@ -27,5 +27,6 @@ function counter(state = initialState, action) {
       return state;
   }
 }
+// 초기 상태에는 number값을 설정했고, 리듀서 함수에는 현재 상태를 참고하여 새로운 객체를 생성해서 반환하는 코드를 작성
 
 export default counter;
