@@ -3,16 +3,29 @@
 // ! 액션도 디스패치해 줄 차례
 // ! 리덕스 스토어와 연동된 컴포넌트를 컨테이너 컴포넌트라고 한다.
 
-import { connect } from 'react-redux';
+import { useCallback } from 'react';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import Counter from '../components/Counter';
 import { decrease, increase } from '../modules/counter';
 
-const CouterContainer = ({ number, increase, decrease }) => {
+// ! 기본
+// const CouterContainer = ({ number, increase, decrease }) => {
+//   return (
+//     <Counter number={number} onIncrease={increase} onDecrease={decrease} />
+//   );
+// };
+
+// ! hooks을 사용하여 컨테이너 컴포넌트 만들기
+const CouterContainer = () => {
+  const number = useSelector((state) => state.counter.number);
+  const dispatch = useDispatch();
+  const onIncrease = useCallback(() => dispatch(increase(), [dispatch]));
+  const onDecrease = useCallback(() => dispatch(decrease(), [dispatch]));
+
   return (
-    <Counter number={number} onIncrease={increase} onDecrease={decrease} />
+    <Counter number={number} onIncrease={onIncrease} onDecrease={onDecrease} />
   );
 };
-
 // * 컴포넌트를 리덕스와 연동하려면 리액트리덕스에서 제공하는 connect 함수를 사용해야한다.
 // * connect(mapStateToProps, mapDispatchToProps)(연동할 컴포넌트)
 
