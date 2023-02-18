@@ -1,10 +1,10 @@
 import AuthTemplate from './auth/AuthTemplate';
-import AuthForm from './auth/AuthForm';
+import RegisterForm from '../containers/auth/RegisterForm';
 
 const ResisterPage = () => {
   return (
     <AuthTemplate>
-      <AuthForm />
+      <RegisterForm />
     </AuthTemplate>
   );
 };

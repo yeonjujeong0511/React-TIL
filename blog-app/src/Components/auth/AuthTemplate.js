@@ -34,17 +34,16 @@ const WhiteBox = styled.div`
   border-radius: 2px;
 `;
 
-const AuthTemplate = ({ chidren }) => {
+const AuthTemplate = ({ children }) => {
   return (
     <AuthTemplateBlock>
       <WhiteBox>
         <div className="logo-area">
           <Link to="/">REACTERS</Link>
         </div>
-        {chidren}
+        {children}
       </WhiteBox>
     </AuthTemplateBlock>
   );
 };
-
 export default AuthTemplate;
